@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mateus Ocanha Games Streaming</title>
+    <link rel="icon" href="assets/perfil-padrao.png" type="image/png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <button class="toggle-theme" id="toggle-theme" aria-label="Alternar tema escuro/claro">
+        <span class="theme-icon">🌙</span>
+    </button>
+    <main>
+        <img src="/assets/streaming.png" alt="Logo Streaming" class="logo">
+
+        <section aria-label="Assitindo">
+            <h2>Quem vai assistir</h2>
+            <div class="assistindo" id="assistindo">
+                <!-- perfil padrão removido -->
+            </div>
+        </section>
+
+        <section aria-label="Outros espectadores">
+            <div class="outros">
+                <figure id="figura-inscrito">
+                    <img class="outro outro-inscrito" src="/assets/perfil-inscrito.png" alt="Perfil inscrito" />
+                    <figcaption>Inscrito</figcaption>
+                </figure>
+                <figure id="figura-visitante">
+                    <img class="outro" src="/assets/perfil-visitante.png" alt="Perfil visitante" />
+                    <figcaption>Visitante</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <p class="click-text">Clique para prosseguir</p>
+
+        <div class="botoes">
+            <button id="botao-inscrito">INSCRITO</button>
+            <button id="botao-se-inscreva">SE INSCREVA</button>
+            <button id="botao-visitante">VISITANTE</button>
+        </div>
+
+        <button class="botao-entrar" id="botao-entrar">ENTRAR</button>
+    </main>
+
+    <script>
+        // GERENCIAR TEMA ESCURO/CLARO
+        const toggleThemeBtn = document.getElementById('toggle-theme');
+        const html = document.documentElement;
+        const themeIcon = document.querySelector('.theme-icon');
+
+        // Detectar tema salvo ou preferência do sistema
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        html.setAttribute('data-theme', savedTheme);
+        themeIcon.textContent = savedTheme === 'dark' ? '🌙' : '☀️';
+
+        // Ouvinte para botão toggle
+        toggleThemeBtn.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            themeIcon.textContent = newTheme === 'dark' ? '🌙' : '☀️';
+        });
+
+        // LÓGICA DOS BOTÕES COM ESTADO DE USUÁRIO
+        const URL_CANAL = 'https://www.youtube.com/@MateusOcanhaGames';
+        const URL_CANAL_INSCREVA = 'https://www.youtube.com/@MateusOcanhaGames?sub_confirmation=1';
+        const USER_TYPE_KEY = 'mateus_streaming_user_type';
+
+        const fotoAssistindo = document.getElementById('foto-assistindo');
+        const nomeAssistindo = document.getElementById('nome-assistindo');
+        const figuraInscrito = document.getElementById('figura-inscrito');
+        const figuraVisitante = document.getElementById('figura-visitante');
+
+        function setUserType(type) {
+            localStorage.setItem(USER_TYPE_KEY, type);
+            if (figuraInscrito) figuraInscrito.classList.toggle('destaque-inscrito', type === 'inscrito');
+            if (figuraVisitante) figuraVisitante.classList.toggle('destaque-visitante', type === 'visitante');
+
+            if (fotoAssistindo && nomeAssistindo) {
+                if (type === 'inscrito') {
+                    fotoAssistindo.src = 'assets/perfil-inscrito.png';
+                    fotoAssistindo.alt = 'Perfil de inscrito';
+                    nomeAssistindo.textContent = 'Inscrito';
+                } else {
+                    fotoAssistindo.src = 'assets/perfil-visitante.png';
+                    fotoAssistindo.alt = 'Perfil do visitante';
+                    nomeAssistindo.textContent = 'Visitante';
+                }
+            }
+        }
+
+        // Altera status para inscrito
+        document.getElementById('botao-inscrito').addEventListener('click', () => {
+            setUserType('inscrito');
+        });
+
+        // Altera status para visitante
+        document.getElementById('botao-visitante').addEventListener('click', () => {
+            setUserType('visitante');
+        });
+
+        // SE INSCREVA: abre canal + marca inscrito
+        document.getElementById('botao-se-inscreva').addEventListener('click', () => {
+            window.open(URL_CANAL, '_blank');
+            setUserType('inscrito');
+        });
+
+        // INICIAR: direciona para a página tipo Netflix
+        document.getElementById('botao-entrar').addEventListener('click', () => {
+            const userType = localStorage.getItem(USER_TYPE_KEY) || 'visitante';
+            localStorage.setItem(USER_TYPE_KEY, userType);
+            window.location.href = 'catalogo/catalogo.html';
+        });
+
+        // Define estado inicial se não existe
+        if (!localStorage.getItem(USER_TYPE_KEY)) {
+            setUserType('visitante');
+        } else {
+            setUserType(localStorage.getItem(USER_TYPE_KEY));
+        }
+    </script>
+    <script src="js/index.js"></script>
+    </body>
+</html>
