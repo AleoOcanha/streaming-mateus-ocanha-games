@@ -1,0 +1,541 @@
+/* Reset global */
+* {
+    /* Inclui padding e border no cálculo da largura/altura do elemento */
+    box-sizing: border-box;
+}
+
+/* VARIÁVEIS DE TEMA */
+html {
+    --bg-primary: linear-gradient(160deg, #001a4d, #003d7a 60%, #000d1a);
+    --text-primary: #fff;
+    --text-secondary: #ddd;
+    --text-tertiary: #bbb;
+    --border-color: #555;
+    --button-bg: #e50914;
+    --button-hover: #ff0f20;
+}
+
+html[data-theme="light"] {
+    --bg-primary: linear-gradient(160deg, #f5f5f5, #e8e8e8 60%, #f0f0f0);
+    --text-primary: #1a1a1a;
+    --text-secondary: #333;
+    --text-tertiary: #666;
+    --border-color: #ddd;
+    --button-bg: #e50914;
+    --button-hover: #ff0f20;
+}
+
+/* Estilos do corpo da página */
+html, body {
+    height: 100%;
+}
+
+body {
+    /* Remove margem padrão do navegador */
+    margin: 0;
+    /* Garante que o body ocupe toda a altura da tela */
+    min-height: 100vh;
+    /* Define fonte padrão com fallbacks */
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    /* Gradiente de fundo tipo Netflix (azul marinho escuro) */
+    background: var(--bg-primary);
+    /* Texto branco para contraste com fundo escuro */
+    color: var(--text-primary);
+    /* Página inicial fixa em uma única tela (sem rolagem) */
+    overflow: hidden;
+    /* Transição suave entre temas */
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+main {
+    height: 100vh;
+    overflow-y: auto;
+}
+
+/* Bobotão Toggle Tema */
+.toggle-theme {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.toggle-theme:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(229, 9, 20, 0.3);
+}
+
+.theme-icon {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.toggle-theme:active .theme-icon {
+    transform: rotate(180deg);
+}
+
+html[data-theme="light"] .toggle-theme {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+
+/* Container principal */
+main {
+    /* Limita a largura máxima do conteúdo */
+    max-width: 1100px;
+    /* Centraliza o elemento (margin auto horizontalmente) */
+    margin: 0 auto;
+    /* Espaçamento interno maior no topo e menor embaixo */
+    padding: 24px 12px 12px;
+    /* Ocupa toda altura livre e centraliza o conteúdo verticalmente */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 12px;
+    overflow: hidden;
+    padding-bottom: 26px;
+}
+
+/* Ajuste por altura para manter tudo visível sem scroll */
+@media (max-height: 760px) {
+    main {
+        padding: 12px 10px 10px;
+        gap: 8px;
+    }
+
+    .logo {
+        max-width: 220px;
+        max-height: 90px;
+        margin-bottom: 8px;
+    }
+
+    .assistindo {
+        margin-bottom: 10px;
+    }
+
+    .assistindo img {
+        width: min(130px, 40vw);
+        height: min(130px, 40vw);
+    }
+
+    .outros img {
+        width: 96px;
+        height: 96px;
+    }
+
+    .top-text,
+    .click-text {
+        margin: 6px 0 10px;
+        font-size: 0.95rem;
+    }
+
+    .botoes {
+        gap: 8px;
+        margin-bottom: 12px;
+    }
+
+    .botoes button,
+    .botao-entrar {
+        padding: 9px 14px;
+        font-size: 0.92rem;
+    }
+}
+
+.botao-entrar {
+    margin-top: 10px;
+}
+
+/* Estilo da imagem logo */
+.logo {
+    /* Exibe como bloco para permitir centralização */
+    display: block;
+    /* Centraliza e adiciona espaço abaixo */
+    margin: 0 auto 12px;
+    /* Largura máxima do logo */
+    max-width: 320px;
+    /* Altura máxima para não estourar em height */
+    max-height: 200px;
+    /* Altura automática mantendo proporção */
+    height: auto;
+    /* Renderiza bordas nítidas sem blur */
+    image-rendering: crisp-edges;
+    /* Aumenta contraste e brilho para melhor legibilidade */
+    filter: contrast(1.15) brightness(1.05);
+    /* Melhora performance 3D (aceleração de hardware) */
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+/* Estilos dos títulos */
+h1, h2 {
+    /* Remove margem padrão */
+    margin: 0;
+    /* Texto em negrito (700 = bold) */
+    font-weight: 700;
+    /* Centraliza o texto */
+    text-align: center;
+}
+
+/* Estilo do título principal */
+h1 {
+    /* Tamanho responsivo: mínimo 1.85rem, 4% da tela, máximo 2.4rem */
+    font-size: clamp(1.85rem, 4vw, 2.4rem);
+    text-align: center;
+    /* Espaço abaixo do título */
+    margin-bottom: 14px;
+}
+
+/* Texto dos textos superiores e de clique */
+.top-text, .click-text {
+    /* Centraliza o texto */
+    text-align: center;
+    /* Cor cinza claro para contraste */
+    color: var(--text-secondary);
+    /* Tamanho da fonte */
+    font-size: 1.05rem;
+    /* Margem do topo/fundo e dos lados */
+    margin: 8px 0 18px;
+}
+
+/* Container da seção "Assistindo" */
+.assistindo {
+    /* Usa flexbox para layout flexível */
+    display: flex;
+    /* Arranja itens em coluna (verticalmente) */
+    flex-direction: column;
+    /* Centraliza itens horizontalmente */
+    align-items: center;
+    /* Centraliza itens verticalmente */
+    justify-content: center;
+    /* Centraliza container e adiciona espaço abaixo */
+    margin: 0 auto 16px;
+    /* Largura automaticamente ajustada ao conteúdo */
+    width: fit-content;
+    max-width: 90vw;
+}
+
+/* Imagem redonda do perfil assistindo */
+.assistindo img {
+    /* Largura responsiva: 180px ou 50% da tela (o menor) */
+    width: min(180px, 50vw);
+    /* Altura idêntica à largura para manter proporção quadrada */
+    height: min(180px, 50vw);
+    /* Torna a imagem redonda (50% = círculo perfeito) */
+    border-radius: 50%;
+    /* Recorta a imagem para preencher o espaço */
+    object-fit: cover;
+    /* Borda vermelha Netflix ao redor */
+    border: 3px solid #e50914;
+    /* Sombra ao redor da imagem para profundidade */
+    box-shadow: 0 0 30px rgba(0,0,0,0.35);
+    /* Anima entre escala normal e aumentada continuamente */
+    animation: pulse 2.1s ease-in-out infinite alternate;
+    /* Garante que a borda permaneça vermelha em light mode também */
+    transition: box-shadow 0.3s ease;
+}
+
+/* Animação de pulsação no logo assistindo */
+@keyframes pulse {
+    /* Estado inicial: tamanho normal e sombra discreta */
+    from { 
+        /* Escala 1 = 100% do tamanho original */
+        transform: scale(1); 
+        /* Sombra com pouca intensidade */
+        box-shadow: 0 0 30px rgba(229, 9, 20, 0.35); 
+    }
+    /* Estado final: tamanho aumentado e sombra mais intensa */
+    to { 
+        /* Escala 1.04 = 4% maior que o original */
+        transform: scale(1.04); 
+        /* Sombra com maior intensidade e blur */
+        box-shadow: 0 0 48px rgba(229, 9, 20, 0.55); 
+    }
+}
+
+/* Texto do nome no perfil assistindo */
+.assistindo p {
+    /* Espaço acima do texto */
+    margin-top: 8px;
+    /* Tamanho da fonte */
+    font-size: 1.05rem;
+    /* Peso do texto (600 = semi-bold) */
+    font-weight: 600;
+}
+
+/* Container dos perfis "Outros" */
+.outros {
+    /* Usa flexbox para layout */
+    display: flex;
+    flex-wrap: wrap;
+    /* Espaço entre itens horizontalmente */
+    gap: 12px;
+    /* Centraliza itens na horizontal */
+    justify-content: center;
+    /* Espaço abaixo */
+    margin-bottom: 16px;
+}
+
+/* Card de perfil na seção Outros */
+.outros figure {
+    /* Remove margem padrão da tag figure */
+    margin: 0;
+    /* Centraliza o conteúdo */
+    text-align: center;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+/* Destaque especial para o perfil Inscrito */
+.outros figure.destaque-inscrito {
+    transform: scale(1.15);
+    filter: drop-shadow(0 0 20px rgba(229, 9, 20, 0.8)) brightness(1.2);
+}
+
+.outros figure.destaque-inscrito img {
+    animation: pulse-destaque 0.6s ease-in-out;
+}
+
+/* Destaque especial para o perfil Visitante */
+.outros figure.destaque-visitante {
+    transform: scale(1.15);
+    filter: drop-shadow(0 0 20px rgba(0, 123, 255, 0.8)) brightness(1.2);
+}
+
+.outros figure.destaque-visitante img {
+    animation: pulse-destaque 0.6s ease-in-out;
+}
+
+/* Animação de destaque para inscrito */
+@keyframes pulse-destaque {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Imagem redonda nos perfis Outros */
+.outros img {
+    /* Tamanho da imagem (100x100px) */
+    width: 120px;
+    height: 120px;
+    /* Torna redonda */
+    border-radius: 50%;
+    /* Recorta a imagem para preencher */
+    object-fit: cover;
+    /* Borda cinza discreta */
+    border: 2px solid var(--border-color);
+}
+
+/* Legenda dos nomes dos perfis Outros */
+.outros figcaption {
+    /* Espaço acima */
+    margin-top: 8px;
+    /* Fonte pequena */
+    font-size: 0.88rem;
+    /* Cor cinza clara */
+    color: var(--text-tertiary);
+}
+
+/* Container dos botões de ação */
+.botoes {
+    /* Usa flexbox */
+    display: flex;
+    /* Permite botões quebrar para próxima linha em telas pequenas */
+    flex-wrap: wrap;
+    /* Centraliza botões */
+    justify-content: center;
+    /* Espaço entre botões */
+    gap: 10px;
+    /* Espaço abaixo */
+    margin-bottom: 18px;
+}
+
+/* Estilo dos botões de ação */
+.botoes button,
+.botao-entrar {
+    /* Espaço interno: 12px vertical, 18px horizontal */
+    padding: 12px 18px;
+    /* Remove borda padrão */
+    border: 0;
+    /* Borda arredondada (999px = completely rounded) */
+    border-radius: 999px;
+    /* Texto branco */
+    color: var(--text-primary);
+    /* Texto em negrito */
+    font-weight: 700;
+    /* Espaço entre letras para melhor legibilidade */
+    letter-spacing: .5px;
+    /* Fundo vermelho Netflix */
+    background: var(--button-bg);
+    /* Cursor muda para mão ao passar */
+    cursor: pointer;
+    /* Anima múltiplas propriedades suavemente */
+    transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+}
+
+/* Efeito ao passar o mouse nos botões */
+.botoes button:hover,
+.botao-entrar:hover {
+    /* Move botão 1px para cima */
+    transform: translateY(-1px);
+    /* Aumenta sombra para efeito de elevação */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    /* Muda cor para vermelho mais claro */
+    background: var(--button-hover);
+}
+
+/* Botão "Entrar" específico */
+.botao-entrar {
+    /* Ocupa 100% da largura disponível */
+    width: 100%;
+    /* Limita largura máxima */
+    max-width: 260px;
+    /* Exibe como bloco para aplicar margin auto */
+    display: block;
+    /* Centraliza horizontalmente */
+    margin: 0 auto;
+    /* não deixa o botão encostar na parte de baixo da tela */
+}
+
+/* Media query para telas pequenas (celulares) */
+@media (max-width: 540px) {
+    .toggle-theme {
+        width: 45px;
+        height: 45px;
+        top: 12px;
+        right: 12px;
+        font-size: 1.2rem;
+    }
+
+    html, body {
+        height: 100%;
+    }
+
+    main {
+        padding: 6px 8px;
+        min-height: 100vh;
+    }
+
+    .logo {
+        max-width: 180px;
+        max-height: 70px;
+        margin-bottom: 10px;
+    }
+
+    .assistindo {
+        margin-bottom: 12px;
+    }
+
+    .assistindo img {
+        width: min(150px, 50vw);
+        height: min(150px, 50vw);
+    }
+
+    .botoes {
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .botoes button {
+        width: 100%;
+        max-width: 260px;
+        font-size: 0.95rem;
+        padding: 10px 16px;
+    }
+
+    .botao-entrar {
+        max-width: 260px;
+    }
+}
+
+/* Responsividade adicional para tablets */
+@media (min-width: 541px) and (max-width: 768px) {
+    main {
+        padding: 20px 14px 14px;
+    }
+    .logo {
+        max-width: 250px;
+        max-height: 110px;
+    }
+    .assistindo img {
+        width: min(170px, 40vw);
+        height: min(170px, 40vw);
+    }
+    .top-text, .click-text {
+        font-size: 1rem;
+        margin: 6px 0 14px;
+    }
+    .botoes {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    .botoes button {
+        min-width: 130px;
+        max-width: 180px;
+    }
+}
+
+/* Responsividade para desktop amplo */
+@media (min-width: 769px) and (max-width: 1200px) {
+    main {
+        padding: 20px 24px 18px;
+    }
+    .logo {
+        max-width: 280px;
+        max-height: 150px;
+    }
+    .assistindo img {
+        width: min(200px, 22vw);
+        height: min(200px, 22vw);
+    }
+    .outros {
+        gap: 16px;
+    }
+    .botoes {
+        gap: 12px;
+    }
+    .botoes button {
+        min-width: 140px;
+        max-width: 200px;
+        font-size: 0.96rem;
+    }
+}
+
+/* Ajuste extra para telas maiores que 1200px */
+@media (min-width: 1201px) {
+    main {
+        padding: 24px 32px 20px;
+        max-width: 1100px;
+    }
+    .logo {
+        max-width: 300px;
+        max-height: 180px;
+    }
+    .assistindo img {
+        width: min(220px, 20vw);
+        height: min(220px, 20vw);
+    }
+    .botoes button {
+        min-width: 150px;
+        max-width: 220px;
+    }
+}
