@@ -4,7 +4,6 @@ export function createCarousel(category) {
     const section = document.createElement('div');
     section.className = 'slider-section';
 
-    // Header for Title and Indicators
     const header = document.createElement('div');
     header.className = 'slider-header';
 
@@ -23,7 +22,7 @@ export function createCarousel(category) {
     row.className = 'movie-row';
 
     category.items.forEach(item => {
-        const card = createCard(item);
+        const card = createCard(item, category.title === 'Playlists');
         row.appendChild(card);
     });
 
