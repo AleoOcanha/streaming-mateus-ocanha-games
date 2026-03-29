@@ -1,6 +1,6 @@
 import { getYouTubeId, getRandomMatchScore, getRandomDuration, getRandomAgeBadge } from '../utils.js';
 
-export function createCard(item) {
+export function createCard(item, isPlaylist = false) {
     const likeStorageKey = `mateus_streaming_like_${getYouTubeId(item.youtube)}`;
 
     const card = document.createElement('div');
@@ -116,7 +116,6 @@ export function createCard(item) {
         });
     }
 
-
     if (item.progress) {
         const pbContainer = document.createElement('div');
         pbContainer.className = 'progress-bar-container';
@@ -131,7 +130,7 @@ export function createCard(item) {
     card.addEventListener('mouseenter', () => {
         const rect = card.getBoundingClientRect();
         const windowWidth = window.innerWidth;
-        
+
         if (rect.left < 100) {
             card.classList.add('origin-left');
         } else if (rect.right > windowWidth - 100) {
@@ -139,17 +138,25 @@ export function createCard(item) {
         }
 
         playTimeout = setTimeout(() => {
-            iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&controls=0&modestbranding=1&loop=1&playlist=${videoId}`;
-            iframe.classList.add('playing');
-            img.classList.add('playing-video');
+            if (isPlaylist) {
+                img.classList.add('playing');
+            } else {
+                iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&controls=0&modestbranding=1&loop=1&playlist=${videoId}`;
+                iframe.classList.add('playing');
+                img.classList.add('playing-video');
+            }
         }, 600);
     });
 
     card.addEventListener('mouseleave', () => {
         clearTimeout(playTimeout);
-        iframe.classList.remove('playing');
-        img.classList.remove('playing-video');
-        iframe.src = "";
+        if (isPlaylist) {
+            img.classList.remove('playing');
+        } else {
+            iframe.classList.remove('playing');
+            img.classList.remove('playing-video');
+            iframe.src = "";
+        }
         card.classList.remove('origin-left');
         card.classList.remove('origin-right');
     });
