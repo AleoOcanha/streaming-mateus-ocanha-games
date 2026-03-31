@@ -155,7 +155,7 @@ main {
 }
 
 .botao-entrar {
-    margin-top: 10px;
+    margin: 4px 0 10px;
 }
 
 /* Estilo da imagem logo */
@@ -294,6 +294,8 @@ h1 {
     margin: 0;
     /* Centraliza o conteúdo */
     text-align: center;
+    /* Indica que o card é clicável */
+    cursor: pointer;
     transition: transform 0.3s ease, filter 0.3s ease;
 }
 
@@ -310,7 +312,7 @@ h1 {
 /* Destaque especial para o perfil Visitante */
 .outros figure.destaque-visitante {
     transform: scale(1.15);
-    filter: drop-shadow(0 0 20px rgba(0, 123, 255, 0.8)) brightness(1.2);
+    filter: drop-shadow(0 0 20px rgba(229, 9, 20, 0.8)) brightness(1.2);
 }
 
 .outros figure.destaque-visitante img {
@@ -363,13 +365,16 @@ h1 {
     justify-content: center;
     /* Espaço entre botões */
     gap: 10px;
-    /* Espaço abaixo */
-    margin-bottom: 18px;
+    /* Evita espaço extra após o segundo botão */
+    margin-bottom: 0;
 }
 
 /* Estilo dos botões de ação */
 .botoes button,
 .botao-entrar {
+    /* Mesmo tamanho visual para os dois botões principais */
+    width: min(260px, 100%);
+    min-height: 48px;
     /* Espaço interno: 12px vertical, 18px horizontal */
     padding: 12px 18px;
     /* Remove borda padrão */
@@ -386,6 +391,10 @@ h1 {
     background: var(--button-bg);
     /* Cursor muda para mão ao passar */
     cursor: pointer;
+    /* Centraliza texto internamente e iguala altura visual */
+    display: flex;
+    align-items: center;
+    justify-content: center;
     /* Anima múltiplas propriedades suavemente */
     transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
 }
@@ -403,14 +412,8 @@ h1 {
 
 /* Botão "Entrar" específico */
 .botao-entrar {
-    /* Ocupa 100% da largura disponível */
-    width: 100%;
-    /* Limita largura máxima */
-    max-width: 260px;
-    /* Exibe como bloco para aplicar margin auto */
-    display: block;
     /* Centraliza horizontalmente */
-    margin: 0 auto;
+    margin: 0 auto 10px;
     /* não deixa o botão encostar na parte de baixo da tela */
 }
 
