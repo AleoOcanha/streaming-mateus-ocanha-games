@@ -24,9 +24,9 @@ export const categories = [
         title: "Playlists",
         items: [
             { img: "../assets/plsubway.png", top10: true, badge: "Subway Surfers", badgeColor: "red", youtube: "https://www.youtube.com/playlist?list=PLr1E145Hc55bnnvWdvu3B8JQFHgW9y2c2" },
-            { img: "../assets/plminecraft.png", top10: true, badge: "Minecraft",youtube: "https://www.youtube.com/playlist?list=PLr1E145Hc55aREUcSiDC48TvlURTVMWdK" },
-            { img: "../assets/pldiversos.png", badge: "Vídeos diversos", badgeColor: "red", youtube: "https://www.youtube.com/playlist?list=PLr1E145Hc55bExpEKcXumG7GFK2QoRgZr" },
-            { img: "../assets/plroblox.png", badge: "Roblox", badgeColor: "red", youtube: "https://www.youtube.com/playlist?list=PLr1E145Hc55aa61D4Lqf2df6jR8pfZA55" },
+            { img: "../assets/plminecraft.png", top10: true, badge: "Minecraft",badgeColor: "red", youtube: "https://www.youtube.com/playlist?list=PLr1E145Hc55aREUcSiDC48TvlURTVMWdK" },
+            { img: "../assets/pldiversos.png", top10: true, badge: "Vídeos diversos", badgeColor: "red", youtube: "https://www.youtube.com/playlist?list=PLr1E145Hc55bExpEKcXumG7GFK2QoRgZr" },
+            { img: "../assets/plroblox.png", top10: true, badge: "Roblox", badgeColor: "red", youtube: "https://www.youtube.com/playlist?list=PLr1E145Hc55aa61D4Lqf2df6jR8pfZA55" },
         ]
     },
     {
