@@ -1,0 +1,110 @@
+Nesta página coloque a seguinte frase em cima:
+"Assista como convidado ou como inscrito"
+
+perfil-padrao em cima maior (que vamos chamar de "assistindo")
+peril-inscrito e perfil-padrao em baixo, todos redondos em baixo menor (que vamos chamar de "outros")
+
+Coloque a frase:
+"Clique para proseguir"
+
+Crie três botões:
+Botão VISITANTE
+Botão SE INSCREVA
+Botão INSCRITO
+
+Se clicar no botao VISITANTE, carrega a imagem perfil-visitante.png no "assistindo"
+Se clicar no botão SE INSCREVA, acessa e inscreve no canal https://www.youtube.com/@MateusOcanhaGames e trazer foto do perfil do yutube do usuário e carregar no "assistindo"
+Se clicar no botao INSCRITO, trazer foto do perfil do youtube do usuário e carregar no "assistindo"
+
+
+Crie o botão entrar abaixo
+
+Crie os estilos baseados na netflix, porém com as seguintes observações:
+Todas as imagens de perfil redondas
+perfil-padrao em cima maior, centralizado na página
+peril-inscrito e perfil-padrao em baixo, todos redondos em baixo menor lado a lado
+
+
+Tenho um página de um site funcionando, tudo certo, nela tem um botão ENTRAR
+Quando clicar no botão ENTRAR, deve entrar em outra página que precisa ser feita com o nome de canal.html:
+Como deve ser:
+Preciso fazer uma página no estilo da Netflix.
+No canto superior esquerdo o logo inscrito ou visitante (anexos), depende de como o usuário entrou;  depois um menu com " Vídeos" Playlists" "Shorts"; depois um botão "INSCREVA-SE"
+Que usará este código:
+<a href="https://www.youtube.com/@MateusOcanhaGames?sub_confirmation=1" 
+   target="_blank" 
+   style="background-color: #ff0000; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold;">
+   INSCREVA-SE NO CANAL
+</a>
+ é um link para inscrição no canal @MateusOcanhaGames, caso o usuário seja visitante. Se o usuário for inscrito, deixe vazio; no canto superior direito o logo logostreaimg.
+O banner deve ser rotativo com a capa de dois vídeos (o vídeo mais assistido e o último vídeo postado)
+Abaixo devem aparecer:"Vídeos", com 6 vídeos de forma randômica cada vez que o usuário acessa é diferente, depois destes 6 vídeos ter o "ver todos".
+link para vídeos:
+https://www.youtube.com/@MateusOcanhaGames/videos
+
+"Playlist", com 6 playlists de forma randômica cada vez que o usuário acessa é diferente, depois destas 6 playlists ter o "ver todos".
+link para playlist:
+https://www.youtube.com/@MateusOcanhaGames/playlists
+
+"Shorts", com 6 shorts de forma randômica cada vez que o usuário acessa é diferente, depois destes 6 shorts ter o "ver todos".
+link para shorts:
+https://www.youtube.com/@MateusOcanhaGames/shorts
+
+Pode fazer o código e como incluir no projeto?
+
+
+
+
+Consegue já criar o JSON com as seguintes informações?
+Canal: 
+https://www.youtube.com/@MateusOcanhaGames
+Vídeos:
+https://www.youtube.com/@MateusOcanhaGames/videos
+Playlist:
+https://www.youtube.com/@MateusOcanhaGames/playlists
+Shorts:
+https://www.youtube.com/@MateusOcanhaGames/shorts
+
+
+No index.html, usando localstorage, armazene o perfil ativo (inscrito ou visitante) e da imagem para que eu possa exibir na página de catalogo.html
+
+
+Link para o primeiro card:
+https://youtu.be/6BVWWFweV6M
+
+Link para o segundo card:
+https://youtu.be/2Ia4L6y1tQc
+
+Link para o terceiro card:
+https://www.youtube.com/watch?v=U1I85kESlZY&t=4s
+
+Link para o quarto card:
+https://youtu.be/U0b5L75Vipk
+
+
+Linkedin
+
+#ImersaoDev #Alura #Programacao #DevIniciante #Aprendizado #Frontend Alura
+#TecnologiaDaInformação hashtag#TI hashtag#FrontEnd hashtag#Alura hashtag#HTML hashtag#InteligênciaArtificial hashtag#IA hashtag#DesenvolvimentoWeb hashtag#Tecnologia hashtag#Computação hashtag#AprendizadoContínuo
+
+
+@Guilherme-lima
+@fernandadegolin
+@thamirisdasilva
+
+https://aleoocanha.github.io/streaming-mateus-ocanha-games/
+
+
+Arquivos no registro.br
+
+Alterar no vercel.com
+
+Depois de alterar e salvar o arquivo no Vscode, abrir terminal e colar:
+git add .
+git commit -m "Atualizando arquivos do site"
+git push origin main
+
+
+
+
+
